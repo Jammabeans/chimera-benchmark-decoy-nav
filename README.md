@@ -1,6 +1,6 @@
 # chimera-benchmark-decoy-nav
 
-This repository is a minimal external Chimera benchmark for the **decoy-nav** weakness category.
+This repository is a minimal external Chimera benchmark for the **decoy-navigation** weakness category.
 
 - It is a **safe synthetic benchmark** repository.
 - It targets whether models stay on the correct task path when distractors/decoys are present.

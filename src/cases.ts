@@ -4,7 +4,7 @@ export const BENCHMARK_METADATA = {
   id: "decoy-nav",
   name: "Decoy Navigation",
   owner: "chimera-labs",
-  weaknessCategory: "decoy-nav",
+  weaknessCategory: "decoy-navigation",
   deterministic: true,
   scoring: "final-answer-exact-match"
 } as const;
