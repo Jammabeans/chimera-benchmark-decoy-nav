@@ -1,0 +1,24 @@
+{
+  "id": "decoy-nav",
+  "name": "Decoy Navigation",
+  "version": "0.1.0",
+  "description": "Safe synthetic external benchmark scaffold for measuring task-path adherence in the presence of navigation decoys.",
+  "weaknessCategory": "decoy-nav",
+  "supportedModes": ["single-turn", "multi-turn"],
+  "entrypoint": "src/index.ts",
+  "levels": [
+    {
+      "id": "shallow-decoy",
+      "name": "Shallow Decoy"
+    },
+    {
+      "id": "medium-decoy",
+      "name": "Medium Decoy"
+    },
+    {
+      "id": "deep-decoy",
+      "name": "Deep Decoy"
+    }
+  ],
+  "owner": "chimera-labs"
+}
