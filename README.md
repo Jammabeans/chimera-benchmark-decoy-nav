@@ -13,6 +13,15 @@ This repository is a minimal external Chimera benchmark for the **decoy-navigati
 - Benchmark data/types/scoring exports (`src/index.ts`)
 - Persistent handoff notes (`docs/roo-handoff.md`)
 
+## Runtime contract (minimal)
+
+This repo now exposes a minimal static runtime surface for Chimera Core manual execution:
+
+- `cases`: deterministic plain objects with runtime fields (`id`, `levelId`, `title`, `prompt`, optional `metadata`)
+- plain text answer scoring via `scoreAnswer(caseId, answerText)`
+- score result shape: `correct`, `score`, `expectedAnswer`, `message`
+- top-level runtime module export: `runtimeBenchmark` (with `manifest`, `cases`, `scoreAnswer`)
+
 ## Manifest identity (current)
 
 - `id`: `decoy-nav`
@@ -45,7 +54,7 @@ The progression from shallow → medium → deep increases distractor complexity
 
 Scoring is intentionally simple for this step:
 
-- final-answer based
+- plain-text final-answer based
 - deterministic
 - exact match after trimming surrounding whitespace
 

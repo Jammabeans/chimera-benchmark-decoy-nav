@@ -2,6 +2,16 @@ export const DECOY_NAV_LEVELS = ["shallow-decoy", "medium-decoy", "deep-decoy"] 
 
 export type DecoyNavLevel = (typeof DECOY_NAV_LEVELS)[number];
 
+export interface RuntimeBenchmarkManifest {
+  id: string;
+  name: string;
+  owner: string;
+  weaknessCategory: string;
+  deterministic: true;
+  answerFormat: "plain-text";
+  scoring: "exact-match-trimmed";
+}
+
 export interface DecoyInstruction {
   id: string;
   text: string;
@@ -11,18 +21,21 @@ export interface DecoyInstruction {
 
 export interface DecoyNavCase {
   id: string;
+  levelId: DecoyNavLevel;
   title: string;
-  level: DecoyNavLevel;
-  objective: string;
-  instructions: DecoyInstruction[];
-  correctPath: string[];
-  expectedFinalAnswer: string;
+  prompt: string;
+  expectedAnswer: string;
+  metadata?: {
+    objective: string;
+    instructions: DecoyInstruction[];
+    correctPath: string[];
+  };
 }
 
-export interface ScoreResult {
-  caseId: string;
-  isCorrect: boolean;
-  expectedFinalAnswer: string;
-  submittedFinalAnswer: string;
+export interface RuntimeScoreResult {
+  correct: boolean;
+  score: number;
+  expectedAnswer: string;
+  message: string;
 }
 
