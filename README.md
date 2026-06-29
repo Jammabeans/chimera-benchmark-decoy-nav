@@ -9,9 +9,17 @@ This repository is a minimal external Chimera benchmark for the **decoy-navigati
 ## Included now
 
 - `benchmark.manifest.json` (root manifest aligned to current Chimera Core contract)
+- `runtime-benchmark.json` (root static runtime benchmark artifact for Chimera Core manual execution)
 - TypeScript package scaffold (`package.json`, `tsconfig.json`)
 - Benchmark data/types/scoring exports (`src/index.ts`)
 - Persistent handoff notes (`docs/roo-handoff.md`)
+
+## Static runtime artifact for Core
+
+This repo now publishes `runtime-benchmark.json` at the repository root.
+
+- It is the static runtime artifact for Chimera Core manual execution.
+- It contains deterministic plain-text cases and exact-text expected answers.
 
 ## Runtime contract (minimal)
 
