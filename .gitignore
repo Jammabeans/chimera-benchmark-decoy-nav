@@ -20,4 +20,4 @@ pnpm-debug.log*
 Thumbs.db
 
 # Local handoff notes not intended for publish
-docs/roo-handoff.md
+docs/local-notes/
