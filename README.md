@@ -4,7 +4,7 @@ This repository is a minimal external Chimera benchmark for the **decoy-navigati
 
 - It is a **safe synthetic benchmark** repository.
 - It targets whether models stay on the correct task path when distractors/decoys are present.
-- **Current status:** first deterministic benchmark content is implemented (no runner/harness yet).
+- **Current status:** deterministic benchmark content plus a local benchmark CLI (`describe`, `generate`, `score`).
 
 ## Included now
 
@@ -12,7 +12,57 @@ This repository is a minimal external Chimera benchmark for the **decoy-navigati
 - `runtime-benchmark.json` (root static runtime benchmark artifact for Chimera Core manual execution)
 - TypeScript package scaffold (`package.json`, `tsconfig.json`)
 - Benchmark data/types/scoring exports (`src/index.ts`)
+- Benchmark CLI entrypoint (`src/chimera-cli.ts` → `dist/chimera-cli.js`)
 - Persistent handoff notes (`docs/roo-handoff.md`)
+
+## Local benchmark CLI (shared contract)
+
+This benchmark repo exposes a local CLI aligned to the Chimera benchmark CLI contract.
+
+- Built entrypoint: `dist/chimera-cli.js`
+- Commands: `describe`, `generate`, `score`
+- Transport:
+  - positional command arg
+  - JSON request from `stdin` for `generate`/`score`
+  - JSON response on `stdout`
+  - readable errors on `stderr`
+  - non-zero exit on failures
+
+### Build
+
+```bash
+npm run build
+```
+
+TypeScript output includes:
+
+- `dist/index.js`
+- `dist/chimera-cli.js`
+
+### Describe
+
+```bash
+node dist/chimera-cli.js describe
+```
+
+### Generate (stdin JSON)
+
+```bash
+printf '{"benchmarkId":"decoy-nav","contractVersion":"1","seed":"1","params":{"levelId":"shallow-decoy"}}' | node dist/chimera-cli.js generate
+```
+
+### Score (stdin JSON)
+
+```bash
+printf '{"benchmarkId":"decoy-nav","contractVersion":"1","instance":{"instanceId":"example","seed":"1","params":{"levelId":"shallow-decoy"},"prompt":"...","expectedAnswer":"TOKEN-ALPHA-42","metadata":{}},"response":{"text":"TOKEN-ALPHA-42"}}' | node dist/chimera-cli.js score
+```
+
+Notes:
+
+- `generate` is deterministic for the same `seed` + `params`.
+- If `params.levelId` is provided, selection is deterministic within that level.
+- If omitted, selection is deterministic across all static cases.
+- `instance.expectedAnswer` is currently included to match the practical contract used by Core integrations.
 
 ## Static runtime artifact for Core
 
